@@ -106,6 +106,13 @@ m_image = pygame.image.load('monster.png') # Import Monster Image
 m1 = Person(m_image,75,100,1250,400,50,400) # Create first monster object
 m2 = Person(m_image,75,100,1200,400,0,400) # Create second monster object
 
+game_status = {sp1:0,sw1:0,sp2:0,sw2:0,m1:0,m2:0} # GAME STATUS DICTIONARY
+ll_cost = {sp1:0,sp2:0,sw1:0,sw2:0,m1:0,m2:0}
+rl_cost = {sp1:2,sp2:2,sw1:1,sw2:1,m1:2,m2:2}
+bell_pair = {sp1:sw1,sp2:sw2,sw1:sp1,sw2:sp2}
+person = [sp1,sp2,sw1,sw2]
+monster = [m1,m2]
+
 # Displaying all the four things on the screen
 def display_boat(boat):
     win.blit(boat.image, (boat.get_x(),boat.get_y()))
@@ -159,10 +166,16 @@ def move_boat_person(boat):
             update_boat_x -= 700 # River width is 700. So subtract to move left. Y coordinate wont change.
             boat.pr.set_x(boat.pr.get_x()-700) # Subtract 700 from the x coordinate of the person sitting on right, so boat and person both move simultaneously
             boat.set_left() # Set the right variable accordingly
+            game_status[boat.get_pr()] = 1
+            ll_cost[boat.get_pr()] = rl_cost[boat.get_pr()]
+            rl_cost[boat.get_pr()] = 0
         else:
             update_boat_x += 700 # If boat on left then add 700.
             boat.pr.set_x(boat.pr.get_x()+700)
             boat.set_right()
+            game_status[boat.get_pr()] = 0
+            rl_cost[boat.get_pr()] = ll_cost[boat.get_pr()]
+            ll_cost[boat.get_pr()] = 0
         boat.set_x(update_boat_x)
         
     # Similar explaination for the next 2.    
@@ -174,10 +187,16 @@ def move_boat_person(boat):
             update_boat_x -= 700
             boat.pl.set_x(boat.pl.get_x()-700)
             boat.set_left()
+            game_status[boat.get_pl()] = 1
+            ll_cost[boat.get_pl()] = rl_cost[boat.get_pl()]
+            rl_cost[boat.get_pl()] = 0
         else:
             update_boat_x += 700
             boat.pl.set_x(boat.pl.get_x()+700)
             boat.set_right()
+            game_status[boat.get_pl()] = 0
+            rl_cost[boat.get_pl()] = ll_cost[boat.get_pl()]
+            ll_cost[boat.get_pl()] = 0
         boat.set_x(update_boat_x)
         
     # Boat can move if there is person sitting on both sides
@@ -188,46 +207,110 @@ def move_boat_person(boat):
             boat.pl.set_x(boat.pl.get_x()-700)
             boat.pr.set_x(boat.pr.get_x()-700)
             boat.set_left()
+            game_status[boat.get_pl()] = 1
+            game_status[boat.get_pr()] = 1
+            ll_cost[boat.get_pr()] = rl_cost[boat.get_pr()]
+            rl_cost[boat.get_pr()] = 0
+            ll_cost[boat.get_pl()] = rl_cost[boat.get_pl()]
+            rl_cost[boat.get_pl()] = 0
         else:
             update_boat_x += 700
             boat.pr.set_x(boat.pr.get_x()+700)
             boat.pl.set_x(boat.pl.get_x()+700)
             boat.set_right()
+            game_status[boat.get_pl()] = 0
+            game_status[boat.get_pr()] = 0
+            rl_cost[boat.get_pr()] = ll_cost[boat.get_pr()]
+            ll_cost[boat.get_pr()] = 0
+            rl_cost[boat.get_pl()] = ll_cost[boat.get_pl()]
+            ll_cost[boat.get_pl()] = 0
         boat.set_x(update_boat_x)
         
     
     
+font = pygame.font.Font('freesansbold.ttf', 50) 
+score_text = font.render('Score :', True, 'blue')  
+score_textRect = score_text.get_rect(topleft=(10,10)) 
+teleport_text = font.render('Teleport',True,'white')
+teleport_textRect = teleport_text.get_rect(topleft=(17,75))
+
+count = 0
+score_val_text = font.render(str(count),True,'blue')
+score_val_textRect = score_val_text.get_rect(topleft=(200,10))
+
+font2 = pygame.font.Font('freesansbold.ttf', 200)
+fin_win_text = font2.render("Win",True,'green')
+fin_win_Rect = fin_win_text.get_rect() 
+fin_win_Rect.center = (1500//2,800//2)
+fin_lose_text = font2.render("Lose",True,'red')
+fin_lose_Rect = fin_lose_text.get_rect()
+fin_lose_Rect.center = (1500//2,800//2)
+
+
+font3 = pygame.font.Font('freesansbold.ttf', 20)  
+ 
+
+line1 = "Welcome to Entangled Love Game. Man and woman is entangled and if one dies then other dies automatically."
+line2 = "There are 2 couples.1 man can fight 1 monster. 2 women can fight 1 monster"
+line3 = "Try to make everyone reach on the other side safely without killing anyone. Maximize your score."
+line4 = "If all couples are killed you lose. If all reach other side you win"
+
+line1_text = font3.render(line1, True, 'blue') 
+line2_text = font3.render(line2, True, 'blue') 
+line3_text = font3.render(line3, True, 'blue') 
+line4_text = font3.render(line4, True, 'blue') 
+line1_text_Rect = score_text.get_rect(topleft=(300,10))
+line2_text_Rect = score_text.get_rect(topleft=(300,40))
+line3_text_Rect = score_text.get_rect(topleft=(300,70))
+line4_text_Rect = score_text.get_rect(topleft=(300,100))
+
 # The main game loop starts
 while run:
-    # Event handler: Detecting Mouse click. 
+    # Event handler: Detecting Mouse click.
+    win.blit(score_text, score_textRect)
+    score_val_text = font.render(str(count)+"/6",True,'blue')
     for event in pygame.event.get():  
         if event.type == pygame.QUIT:   #Quitting game 
             run = False
             sys.exit()
     
     win.fill((69, 255, 202)) #Give background color
-    pygame.draw.rect(win, (255,0,0), (10, 10, 40, 40)) #Given a red rectangle which act as a button to move the boat.
+    win.blit(score_text, score_textRect)
+    win.blit(score_val_text,score_val_textRect)
+    win.blit(line1_text,line1_text_Rect)
+    win.blit(line2_text,line2_text_Rect)
+    win.blit(line3_text,line3_text_Rect)
+    win.blit(line4_text,line4_text_Rect)
+    pygame.draw.rect(win, (255,0,0), (10, 70, 215, 60)) #Given a red rectangle which act as a button to move the boat.
+    win.blit(teleport_text,teleport_textRect)
     pygame.draw.rect(win, (39, 158, 255), (300, 600, 900, 200)) # Draw water
     pygame.draw.rect(win, (110, 203, 99), (0, 500, 300, 300)) # Draw left land
     pygame.draw.rect(win, (110, 203, 99), (1200, 500, 300, 300)) # Draw right land
     display_boat(boat) # Display boat
     
     #Display all characters
-    display_sp(sp1)
-    display_sp(sp2)
-    display_sw(sw1)
-    display_sw(sw2)
-    display_monsters(m1)
-    display_monsters(m2)
+    if(game_status[sp1] !=  -1):
+        display_sp(sp1)
+    if(game_status[sp2] != -1):
+        display_sp(sp2)
+    if(game_status[sw1] != -1):
+        display_sw(sw1)
+    if(game_status[sw2] != -1):    
+        display_sw(sw2)
+    if(game_status[m1] != -1):
+        display_monsters(m1)
+    if(game_status[m2] != -1):
+        display_monsters(m2)
     
     ev = pygame.event.get() # Catching the mouse click event
     for event in ev:
         if event.type == pygame.MOUSEBUTTONDOWN:
+            count = 0
             pos = pygame.mouse.get_pos()
             print(pos)
             # Based on the position of mouse click appropriate action will be taken.
             # Below is position of red button. It will move boat.
-            if(pos[0]>10 and pos[0]<50 and pos[1]>10 and pos[1]<50):
+            if(pos[0]>10 and pos[0]<225 and pos[1]>70 and pos[1]<130):
                 move_boat_person(boat)
                 
             # Moving any object from land to boat. There are 4 else if condition
@@ -281,9 +364,51 @@ while run:
                 place_pos_left(m1,boat)
             elif(pos[0]>0 and pos[0]<75 and pos[1]>400 and pos[1]<600):
                 place_pos_left(m2,boat)
+                
+            for p in game_status:
+                if game_status[p] == 1:
+                    count += 1
             
+            print(game_status)
+            print(ll_cost)
+            print(rl_cost)
+            # For killing
+            left_person_cost = ll_cost[sp1]+ll_cost[sp2]+ll_cost[sw1]+ll_cost[sw2]
+            left_monster_cost = ll_cost[m1]+ll_cost[m2]
+            right_person_cost = rl_cost[sp1]+rl_cost[sp2]+rl_cost[sw1]+rl_cost[sw2]
+            right_monster_cost = rl_cost[m1]+rl_cost[m2]
+            print(right_person_cost)
+            print(right_monster_cost)
+            print(left_person_cost)
+            print(left_monster_cost)
+            if(left_person_cost<left_monster_cost):
+                for p in person:
+                    if(ll_cost[p]>0):
+                        game_status[p] = -1
+                        game_status[bell_pair[p]] = -1
+                        ll_cost[p] = 0
+                        if(p == boat.get_pl() or bell_pair[p] == boat.get_pl()):
+                            boat.set_pl(None)
+                        elif(p == boat.get_pr() or bell_pair[p] == boat.get_pr()):
+                            boat.set_pr(None) 
+            if(right_person_cost<right_monster_cost):
+                for p in person:
+                    if(rl_cost[p]>0):
+                        game_status[p] = -1
+                        game_status[bell_pair[p]] = -1
+                        rl_cost[p] = 0
+                        if(p == boat.get_pl() or bell_pair[p] == boat.get_pl()):
+                            boat.set_pl(None)
+                        elif(p == boat.get_pr() or bell_pair[p] == boat.get_pr()):
+                            boat.set_pr(None)
+    if(game_status[sp1] == -1 and game_status[sp2] == -1 and game_status[sw1] == -1 and game_status[sw2] == -1):
+                #LOSE
+        win.blit(fin_lose_text, fin_lose_Rect)
                 
-                
+    if(game_status[sp1] == 1 and game_status[sp2] == 1 and game_status[sw1] == 1 and game_status[sw2] == 1 and game_status[m1] == 1 and game_status[m2] == 1):
+                #WINNING
+        win.blit(fin_win_text, fin_win_Rect)
+            
     pygame.display.update() # Updating the screen everytime. 
 
 pygame.quit()
