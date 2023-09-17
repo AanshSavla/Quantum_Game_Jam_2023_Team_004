@@ -47,12 +47,44 @@ connection is called as entanglement. So we decided to work around this idea. We
 and the task is to make them cross a river so that they all can reach other side of the river bank safely. But on any side if the number of monsters are greater than the number of monks then those monks will get killed. 
 For our game we have changed the characters of the game. There are 2 monsters and 2 couples(total 4 people).A men and a women are in love with each other. This makes both of them so much entangled to each other that if one is killed 
 then due to the spooky action at a distance other will be killed automatically. In short the state of one depends entirely on the state of the other. Hence totally there are 6 people viz 2 men, 2 women and 2 monsters.
-Rules of the game are as follows
-1) 1 man can handle 1 monster on any side
-2) 2 women can handle 1 monster on any side
-3) If a man or a woman gets killed then his/her partner automatically gets killed.
-4) Maximize your score
-5) If both couples are killed then you lose.
-6) If both couples and monsters reach on the other side of the river bank then you win.
+{% comment %} 
+%Rules of the game are as follows
+%1) 1 man can handle 1 monster on any side
+%2) 2 women can handle 1 monster on any side
+%3) If a man or a woman gets killed then his/her partner automatically gets killed.
+%4) Maximize your score
+%5) If both couples are killed then you lose.
+%6) If both couples and monsters reach on the other side of the river bank then you win.
+{% endcomment %}
 
-There are many improvements needed in the game and we can add even some more features. But during this 48 hours of Quantum Game JAM we steadily made the progress and make our game work!  
+**Quantum Physics in the game:**    
+1) **Quantum Entanglement:** Entangled emotional+physical (EP) state: Doesn't matter where the partner is, the EP state of one automatically affects the other.    
+
+**Rules:**
+There should always be one person on the boat to carry the boat around.
+There can’t be more than two monsters on the boat.
+
+**Killing Condition:** 
+Case 1: On the boat only in the river away from the riverbanks
+Case 2: If boat is berthed on the riverbank, then including people and monsters on the boat and on the riverbank 
+
+In either of the above cases,
+If the number of monsters equals the number of women, the women get killed.
+If the number of monsters is greater than the number of men, the men get killed.
+Every time an individual from the pair gets killed, the partner gets killed. Entanglement!
+
+ 
+**Winning condition:** 
+All character pairs crossed the river safely to reach riverbank B.
+
+**Losing condition:**
+The game is lost if all characters get killed by a monster and the game ends there.
+
+**Scoring condition:**
+Scores can be given based on the time taken by the player to complete each level and the number of characters transported successfully.
+
+**Playing hints:**
+Players need to strategize to ensure that monsters are never in greater numbers than characters on any island/riverbank, as this would result in the death of a pair.
+
+
+There are many improvements needed in the game and we can add even some more features as mentioned in the 'QGameJam2023_Entagled Love.pdf'. But during this 48 hours of Quantum Game Jam we steadily made the progress and make our game work!  
