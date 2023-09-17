@@ -1,4 +1,4 @@
-**Quantum Game jam 2023**
+## Quantum Game jam 2023
 
 # :space_invader: Team Entangled Love
 
@@ -21,6 +21,10 @@ Aansh Savla (Ideas, Developing the game) (Discord ID: aansh3440)
 Abdullah Kazi (Use cases, Developing the game) (Discord ID: AAK/Ludwig Maxwell Planck)        
 Pratiksha Gaikwad (Ideas, Defining problem statement, Use Cases, Presentations, Documentations) (Discord ID: pratiksha1080)   
 Amrit Chettri (Technical support) (Discord ID:amritchhetrib)    
+
+### Mentors
+Laura Piispanen (laura.piispanen @ aalto.fi), Aalto University on behalf of IGDA Finland     
+Natasha Skult (natasha.skult@igda.fi)   
 
 
 
