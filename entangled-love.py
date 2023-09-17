@@ -253,7 +253,7 @@ font3 = pygame.font.Font('freesansbold.ttf', 20)
 line1 = "Welcome to Entangled Love Game. Man and woman is entangled and if one dies then other dies automatically."
 line2 = "There are 2 couples.1 man can fight 1 monster. 2 women can fight 1 monster"
 line3 = "Try to make everyone reach on the other side safely without killing anyone. Maximize your score."
-line4 = "If all couples are killed you lose. If all reach other side you win"
+line4 = "If all couples are killed you lose. If all reach other side you win. Click 'Teleport' button to travel."
 
 line1_text = font3.render(line1, True, 'blue') 
 line2_text = font3.render(line2, True, 'blue') 
@@ -263,6 +263,12 @@ line1_text_Rect = score_text.get_rect(topleft=(300,10))
 line2_text_Rect = score_text.get_rect(topleft=(300,40))
 line3_text_Rect = score_text.get_rect(topleft=(300,70))
 line4_text_Rect = score_text.get_rect(topleft=(300,100))
+
+
+left_person_cost = 0
+left_monster_cost = 0
+right_person_cost = 0
+right_monster_cost = 0
 
 # The main game loop starts
 while run:
@@ -369,9 +375,9 @@ while run:
                 if game_status[p] == 1:
                     count += 1
             
-            print(game_status)
-            print(ll_cost)
-            print(rl_cost)
+            print(str(game_status))
+            print(str(ll_cost))
+            print(str(rl_cost))
             # For killing
             left_person_cost = ll_cost[sp1]+ll_cost[sp2]+ll_cost[sw1]+ll_cost[sw2]
             left_monster_cost = ll_cost[m1]+ll_cost[m2]
@@ -387,6 +393,9 @@ while run:
                         game_status[p] = -1
                         game_status[bell_pair[p]] = -1
                         ll_cost[p] = 0
+                        ll_cost[bell_pair[p]] = 0
+                        rl_cost[p] = 0
+                        rl_cost[bell_pair[p]] = 0
                         if(p == boat.get_pl() or bell_pair[p] == boat.get_pl()):
                             boat.set_pl(None)
                         elif(p == boat.get_pr() or bell_pair[p] == boat.get_pr()):
@@ -396,11 +405,15 @@ while run:
                     if(rl_cost[p]>0):
                         game_status[p] = -1
                         game_status[bell_pair[p]] = -1
+                        ll_cost[p] = 0
+                        ll_cost[bell_pair[p]] = 0
                         rl_cost[p] = 0
+                        rl_cost[bell_pair[p]] = 0
                         if(p == boat.get_pl() or bell_pair[p] == boat.get_pl()):
                             boat.set_pl(None)
                         elif(p == boat.get_pr() or bell_pair[p] == boat.get_pr()):
                             boat.set_pr(None)
+            
     if(game_status[sp1] == -1 and game_status[sp2] == -1 and game_status[sw1] == -1 and game_status[sw2] == -1):
                 #LOSE
         win.blit(fin_lose_text, fin_lose_Rect)
