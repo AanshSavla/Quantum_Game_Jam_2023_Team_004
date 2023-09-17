@@ -14,6 +14,25 @@
 - [License](#license)
 - [References](#references)
 
+# Team Introduction
+**Team Name:** Entangled Love
+
+
+
+
+
+****Member Names:****
+
+------------
+
+**Pratiksha Gaikwad**
+
+**Aansh Savla**
+
+**Abdullah Kazi**
+
+
+
 
 
 
