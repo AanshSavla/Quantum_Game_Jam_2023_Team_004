@@ -30,7 +30,7 @@
 
 **Aansh Savla (Ideas, Developing the game) ( Discord ID: aansh3440)**
 
-**Abdullah Kazi (Use cases, Developing the game) (Discord ID: )**
+**Abdullah Kazi (Use cases, Developing the game) (Discord ID: AAK/Ludwig Maxwell Planck  )**
 
 
 
