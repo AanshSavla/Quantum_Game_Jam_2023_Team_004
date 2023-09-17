@@ -1,3 +1,26 @@
+**Quantum Game jam 2023**
+
+# :space_invader: Team Entangled Love
+
+- [Team Introduction](#team-introduction)
+- [Game Summary](#game-summary)
+  - [Mission](#mission)
+  - [Story](#story)
+  - [How To Play](#how-to-play)
+- [How to Install](#how-to-install)
+- [Challenges Faced](#challenges-faced)
+- [Software & Tools Used](#software--tools-used)
+- [Future Plans](#future-plans)
+- [License](#license)
+- [References](#references)
+
+
+
+
+
+
+
+
 # Quantum_Game_Jam_2023_Team_004
 Welcome to the Quantum Game JAM 2023. We are team number 004. The theme of the current Game JAM was (e)Motion. Love is a divine emotion. Love between any two person connects them and in Quantum Mechanics such intertwined
 connection is called as entanglement. So we decided to work around this idea. We kept the name of our game as Entangled Love. This game is similar to the Missionaries and Cannibal game in which there are 3 monks and 3 monsters 
