@@ -63,5 +63,6 @@ Scores can be given based on the time taken by the player to complete each level
 **Playing hints:**
 Players need to strategize to ensure that monsters are never in greater numbers than characters on any island/riverbank, as this would result in the death of a pair.
 
+Checkout the video about the game on YouTube [here](https://www.youtube.com/watch?v=liZ2nRnUeww).  
 
-There are many improvements needed in the game and we can add even some more features as mentioned in the 'QGameJam2023_Entagled Love.pdf'. But during this 48 hours of Quantum Game Jam we steadily made the progress and make our game work!  
+There are many improvements needed in the game and we can add even some more features as mentioned in the 'QGameJam2023_Entagled Love.pdf'. But during this 48 hours of Quantum Game Jam we steadily made the progress and make our game work!
