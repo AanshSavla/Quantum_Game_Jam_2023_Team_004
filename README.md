@@ -24,12 +24,13 @@
 ****Member Names:****
 
 ------------
+**Amrit Chettri (Mentor) (Discord ID:amritchhetrib)**
 
-**Pratiksha Gaikwad**
+**Pratiksha Gaikwad (Ideas, Defining problem statement ,Use Cases, Presentations, Documentations) (Discord ID: pratiksha1080)**
 
-**Aansh Savla**
+**Aansh Savla (Ideas, Developing the game) ( Discord ID: aansh3440)**
 
-**Abdullah Kazi**
+**Abdullah Kazi (Use cases, Developing the game) (Discord ID: )**
 
 
 
