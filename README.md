@@ -19,6 +19,7 @@ Aansh Savla (Ideas, Developing the game) (Discord ID: aansh3440)
 Abdullah Kazi (Use cases, Developing the game) (Discord ID: AAK/Ludwig Maxwell Planck)        
 Pratiksha Gaikwad (Ideas, Defining problem statement, Use Cases, Presentations, Documentations) (Discord ID: pratiksha1080)   
 Amrit Chettri (Technical support) (Discord ID:amritchhetrib)    
+Swapnil (Discussing ideas, Finding Technology for game,Developing game)(Discord ID: swapnil1999)
 
 ### Mentors
 Laura Piispanen (laura.piispanen@aalto.fi), Aalto University on behalf of IGDA Finland     
